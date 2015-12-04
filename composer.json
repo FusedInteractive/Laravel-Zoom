@@ -1,7 +1,7 @@
 {
     "name": "fusedinteractive/laravel-zoom",
     "description": "Integrates Zoom video meeting system with Laravel",
-    "keywords": ["laravel","zoom","video","meeting"],
+    "keywords": ["laravel","zoom","video","meeting","conference","conferencing"],
     "homepage": "https://github.com/FusedInteractive/laravel-zoom",
     "license": "MIT",
     "authors": [
@@ -15,7 +15,8 @@
     },
     "require": {
         "php": ">=5.4.0",
-        "illuminate/support": "~5.0",
+        "guzzlehttp/guzzle": "~5.0|~6.0",
+        "illuminate/support": "~5.0"
     },
     "require-dev": {
         "orchestra/testbench": "~3.0",

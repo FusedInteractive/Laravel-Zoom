@@ -1,0 +1,45 @@
+<?php
+
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class AddZoomMeetingsColumns extends Migration {
+
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::table('zoom_meetings_table', function(Blueprint $table)
+        {
+            $table->string('topic')->nullable();
+            $table->string('zoom_id')->nullable();
+            $table->string('zoom_host_id')->nullable();
+            $table->string('zoom_start_url')->nullable();
+            $table->integer('duration')->unsigned()->nullable();
+            $table->timestamp('start_time')->nullable();
+            $table->timestamp('end_time')->nullable();
+            $table->string('timezone')->nullable();
+            $table->string('zoom_password')->nullable();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::table('zoom_meetings_table', function(Blueprint $table)
+        {
+            $table->dropColumn(
+                'topic', 'zoom_id', 'zoom_host_id', 'zoom_start_url', 'duration', 'start_time', 'end_time',
+                'timezone', 'zoom_password'
+            );
+        });
+    }
+
+}
