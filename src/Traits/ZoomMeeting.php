@@ -160,7 +160,7 @@ trait ZoomMeeting
     public function createZoomScheduledMeeting($host, $topic, $startTime, $timezone = null, $duration = null, $password = null, $data = [])
     {
         if (!$startTime instanceof Carbon) {
-            $startTime = new Carbon($startTime);
+            $startTime = Carbon::parse($startTime, $timezone);
         }
 
         $data = array_merge([
