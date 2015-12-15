@@ -17,7 +17,7 @@ class AddZoomMeetingsColumns extends Migration {
             $table->string('topic')->nullable();
             $table->string('zoom_id')->nullable();
             $table->string('zoom_host_id')->nullable();
-            $table->string('zoom_start_url')->nullable();
+            $table->mediumText('zoom_start_url')->nullable();
             $table->integer('duration')->unsigned()->nullable();
             $table->timestamp('start_time')->nullable();
             $table->timestamp('end_time')->nullable();
