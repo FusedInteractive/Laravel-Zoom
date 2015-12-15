@@ -148,6 +148,10 @@ trait ZoomMeeting
 
     public function createZoomInstantMeeting($host, $topic, $password = null, $data = [])
     {
+        $data = array_merge([
+            'type' => 1,
+        ], $data);
+
         $this->processZoomCreateMeeting($host, $topic, $password, $data);
 
         return $this;
@@ -163,6 +167,7 @@ trait ZoomMeeting
             'start_time' => $startTime->toIso8601String(),
             'timezone' => $timezone,
             'duration' => $duration,
+            'type' => 2,
         ], $data);
 
         $this->processZoomCreateMeeting($host, $topic, $password, $data);
