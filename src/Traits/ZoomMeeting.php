@@ -3,6 +3,7 @@
 namespace Fused\Zoom\Traits;
 
 use Carbon\Carbon;
+use Fused\Zoom\Contracts\ZoomUser as ZoomUserContract;
 
 trait ZoomMeeting
 {
@@ -172,7 +173,7 @@ trait ZoomMeeting
         return $this;
     }
 
-    protected function processZoomCreateMeeting(ZoomUser $host, $topic, $password = null, $data)
+    protected function processZoomCreateMeeting(ZoomUserContract $host, $topic, $password = null, $data)
     {
         $data = array_merge([
             'host_id' => $host->getZoomId(),
