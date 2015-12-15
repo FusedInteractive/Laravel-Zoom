@@ -189,7 +189,6 @@ trait ZoomMeeting
         $this->setZoomPassword($password);
         $this->setZoomHostId($zoomMeeting->host_id);
         $this->setZoomStartUrl($zoomMeeting->start_url);
-        $this->setTopic($topic);
 
         return $this;
     }
