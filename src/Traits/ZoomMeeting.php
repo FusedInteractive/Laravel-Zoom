@@ -191,7 +191,7 @@ trait ZoomMeeting
         return $this;
     }
 
-    protected function processZoomCreateMeeting(ZoomUserContract $host, $topic, $password = null, $data)
+    protected function processZoomCreateMeeting(ZoomUserContract $host, $topic, $password = null, $data = [])
     {
         $data = array_merge([
             'host_id' => $host->getZoomId(),
