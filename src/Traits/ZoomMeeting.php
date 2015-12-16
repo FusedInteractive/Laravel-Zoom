@@ -12,12 +12,7 @@ trait ZoomMeeting
     public function getZoomMeeting()
     {
         if (!$this->zoom_meeting && $this->getZoomId()) {
-            $zoom = app()->make('zoom');
-
-            $this->zoom_meeting = $zoom->meeting->get([
-                'host_id' => $this->getZoomHostId(),
-                'id' => $this->getZoomId(),
-            ]);
+            $this->refreshZoomMeeting();
         }
 
         return $this->zoom_meeting;
@@ -28,6 +23,16 @@ trait ZoomMeeting
         $this->zoom_meeting = $meeting;
 
         return $this;
+    }
+
+    protected function refreshZoomMeeting()
+    {
+        $zoom = app()->make('zoom');
+
+        $this->zoom_meeting = $zoom->meeting->get([
+            'host_id' => $this->getZoomHostId(),
+            'id' => $this->getZoomId(),
+        ]);
     }
 
     public function getZoomId()
