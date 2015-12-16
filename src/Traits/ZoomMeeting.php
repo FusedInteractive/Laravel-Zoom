@@ -212,6 +212,29 @@ trait ZoomMeeting
         return $this;
     }
 
+    public function updateZoomMeeting($data = [])
+    {
+        $data = array_merge([
+            'id' => $this->getZoomId(),
+            'host_id' => $this->getZoomHostId(),
+            'password' => $this->getZoomPassword(),
+            'start_time' => $this->formatDateToZoom($this->getStartTime()),
+            'duration' => $this->getDuration(),
+            'timezone' => $this->getTimezone(),
+        ], $data);
+
+        $zoom = app()->make('zoom');
+
+        $zoom->meeting->update($data);
+
+        // Only refresh if it's needed. Don't need to make a pointless API call
+        if ($this->zoom_meeting) {
+            $this->refreshZoomMeeting();
+        }
+
+        return $this;
+    }
+
     public function deleteZoomMeeting()
     {
         $zoom = app()->make('zoom');

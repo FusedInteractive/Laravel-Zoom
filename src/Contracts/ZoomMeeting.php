@@ -48,6 +48,8 @@ interface ZoomMeeting
 
     public function createZoomScheduledMeeting($host, $topic, $startTime, $timezone = null, $duration = null, $password = null, $data = []);
 
+    public function updateZoomMeeting($data = []);
+
     public function deleteZoomMeeting();
 
     public function endZoomMeeting();
