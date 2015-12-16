@@ -44,13 +44,17 @@ trait ZoomMeeting
 
     public function getStartTime()
     {
+        if ($this->start_time && !$this->start_time instanceof Carbon) {
+            $this->start_time = Carbon::parse($this->start_time, $this->timezone);
+        }
+
         return $this->start_time;
     }
 
     public function setStartTime($startTime)
     {
         if (!$startTime instanceof Carbon && !is_null($startTime)) {
-            $startTime = new Carbon($startTime);
+            $startTime = Carbon::parse($startTime, $this->timezone);
         }
 
         $this->start_time = $startTime;
@@ -60,13 +64,17 @@ trait ZoomMeeting
 
     public function getEndTime()
     {
+        if ($this->end_time && !$this->end_time instanceof Carbon) {
+            $this->end_time = Carbon::parse($this->end_time, $this->timezone);
+        }
+
         return $this->end_time;
     }
 
     public function setEndTime($endTime)
     {
         if (!$endTime instanceof Carbon && !is_null($endTime)) {
-            $endTime = new Carbon($endTime);
+            $endTime = Carbon::parse($endTime, $this->timezone);
         }
 
         $this->end_time = $endTime;
@@ -164,7 +172,7 @@ trait ZoomMeeting
         }
 
         $data = array_merge([
-            'start_time' => $startTime->toIso8601String(),
+            'start_time' => $this->formatDateToZoom($startTime),
             'timezone' => $timezone,
             'duration' => $duration,
             'type' => 2,
@@ -232,5 +240,14 @@ trait ZoomMeeting
         $this->setEndTime($response->ended_at);
 
         return $this;
+    }
+
+    /**
+     * Zoom uses a non-standard date format.
+     * Format: 2015-01-01T00:00:00Z
+     */
+    protected function formatDateToZoom(Carbon $time)
+    {
+        return $time->copy()->tz('UTC')->format('Y-m-d\TH:i:s\Z');
     }
 }
