@@ -251,6 +251,7 @@ trait ZoomMeeting
         $this->setDuration(null);
         $this->setTimezone(null);
         $this->setStartTime(null);
+        $this->setEndTime(null);
         $this->setZoomStartUrl(null);
 
         return $this;
