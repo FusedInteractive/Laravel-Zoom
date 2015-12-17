@@ -261,7 +261,7 @@ trait ZoomMeeting
     {
         $zoom = app()->make('zoom');
         
-        $response = $zoom->meeting->delete([
+        $response = $zoom->meeting->end([
             'host_id' => $this->getZoomHostId(),
             'id' => $this->getZoomId(),
         ]);
