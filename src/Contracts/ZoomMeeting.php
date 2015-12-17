@@ -4,6 +4,8 @@ namespace Fused\Zoom\Contracts;
 
 interface ZoomMeeting
 {
+    const TIME_FORMAT = 'Y-m-d\TH:i:s\Z';
+    
     public function getZoomMeeting();
 
     public function setZoomMeeting($meeting);

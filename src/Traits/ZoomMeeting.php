@@ -277,6 +277,6 @@ trait ZoomMeeting
      */
     protected function formatDateToZoom(Carbon $time)
     {
-        return $time->copy()->tz('UTC')->format('Y-m-d\TH:i:s\Z');
+        return $time->copy()->tz('UTC')->format(self::TIME_FORMAT);
     }
 }
