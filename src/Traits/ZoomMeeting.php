@@ -266,7 +266,8 @@ trait ZoomMeeting
             'id' => $this->getZoomId(),
         ]);
 
-        $this->setEndTime($response->ended_at);
+        $endTime = Carbon::createFromFormat(self::TIME_FORMAT, $response->ended_at);
+        $this->setEndTime($endTime->copy()->tz($this->timezone));
 
         return $this;
     }
