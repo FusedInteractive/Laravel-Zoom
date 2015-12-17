@@ -13,6 +13,7 @@ class Zoom
     protected $resource = [];
     protected $errorCodes = [
         102 => "ZoomAuthorizationException",
+        3001 => "ZoomMeetingNotFoundException",
     ];
 
     public function __construct($config)
